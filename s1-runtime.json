@@ -1,0 +1,47 @@
+{
+  "target": "bmv2",
+  "p4info": "build/basic.p4.p4info.txt",
+  "bmv2_json": "build/basic.json",
+  "table_entries": [
+    {
+      "table": "ingress.ipv4Forward.ipv4_lpm",
+      "match": {
+        "hdr.ipv4.dst_addr": ["10.10.10.0", 24]
+      },
+      "action_name": "ingress.ipv4Forward.ipv4_forward",
+      "action_params": {
+        "dst_addr": "08:00:00:00:01:11",
+        "port": 1
+      }
+    },
+    {
+      "table": "ingress.ipv4Forward.ipv4_lpm",
+      "match": {
+        "hdr.ipv4.dst_addr": ["10.20.20.0", 24]
+      },
+      "action_name": "ingress.ipv4Forward.ipv4_forward",
+      "action_params": {
+        "dst_addr": "08:00:00:00:02:22",
+        "port": 2
+      }
+    },
+    {
+      "table": "ingress.ipv4Forward.ipv4_lpm",
+      "match": {
+        "hdr.ipv4.dst_addr": ["10.30.30.0", 24]
+      },
+      "action_name": "ingress.ipv4Forward.ipv4_forward",
+      "action_params": {
+        "dst_addr": "08:00:00:00:03:33",
+        "port": 3
+      }
+    }
+  ],
+  "clone_session_entries": [
+    {
+      "clone_session_id": 100,
+      "replicas": [ {"egress_port": 255, "instance": 1} ]
+    }
+  ]
+  
+}
